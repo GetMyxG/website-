@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MyxG Waitlist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Your match. The pro treatment. Upload your grassroots match video and get your own stats, xG and a player card. Join the MyxG waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: broadcast-graphic hero — copy + sign-up on the left, live player card on the right; stacked on phones */
+:root{
+  --navy:#04103F; --panel:#0A1D63; --panel-2:#0D2470; --blue:#0A2A9E; --red:#E3102B; --red-hi:#FF3049;
+  --ink:#FFFFFF; --muted:#B9C3E8; --line:rgba(255,255,255,.14); --field:#071650; --ok:#2BD47D;
+  --display:"Anton","Impact","Arial Narrow",sans-serif;
+  --body:"Barlow","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--navy);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;
+  background-image:radial-gradient(1200px 600px at 75% -10%,rgba(10,42,158,.9),transparent 60%),radial-gradient(700px 500px at 110% 40%,rgba(227,16,43,.22),transparent 60%);
+  background-repeat:no-repeat}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--red-hi);outline-offset:2px;border-radius:4px}
+
+.logo{display:inline-flex;align-items:center;font-family:var(--display);font-size:34px;line-height:1;letter-spacing:.01em;text-decoration:none;color:var(--ink)}
+.logo b{font-weight:400;background:var(--red);padding:.05em .14em .03em;margin-left:.06em;border-radius:.06em}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:22px}
+.chip{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--muted);white-space:nowrap}
+.chip i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-right:7px;vertical-align:1px;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:start;padding-block:28px 64px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:36px}}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-hi);margin:0 0 14px}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(44px,7.4vw,84px);line-height:.96;letter-spacing:.005em;margin:0;text-wrap:balance}
+h1 span{color:var(--red)}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:34em;margin:20px 0 0}
+.lede strong{color:var(--ink);font-weight:600}
+
+form{margin-top:30px;background:rgba(7,22,80,.72);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:16px;backdrop-filter:blur(6px)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+label.f{display:grid;gap:6px;font-weight:600;font-size:14px}
+label.f small{font-weight:500;color:var(--muted)}
+input[type=email],input[type=text],select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+input::placeholder{color:#7F8BBF}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
+legend{font-weight:600;font-size:14px;padding:0;margin-bottom:8px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill span{display:inline-block;border:1px solid var(--line);background:var(--field);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;cursor:pointer;user-select:none;transition:background .15s,border-color .15s}
+.pill input:checked+span{background:var(--red);border-color:var(--red)}
+.pill input:focus-visible+span{outline:3px solid var(--red-hi);outline-offset:2px}
+.check{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:14px;color:var(--muted)}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--red)}
+.check strong{color:var(--ink);font-weight:600}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button{font:inherit;font-family:var(--display);font-size:22px;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--red);border:0;border-radius:12px;padding:14px 18px;cursor:pointer;transition:transform .12s,background .15s}
+button:hover{background:var(--red-hi)}
+button:active{transform:translateY(1px)}
+button[disabled]{opacity:.6;cursor:wait}
+.fine{font-size:13px;color:var(--muted);margin:0}
+.msg{border-radius:10px;padding:12px 14px;font-weight:600;font-size:15px}
+.msg.err{background:rgba(227,16,43,.16);border:1px solid rgba(227,16,43,.6)}
+.done{text-align:left;display:grid;gap:10px}
+.done h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:34px;line-height:1;margin:0}
+.done h2 span{color:var(--ok)}
+.done p{margin:0;color:var(--muted)}
+
+/* player card */
+.cardcol{position:sticky;top:24px}
+@media (max-width:860px){.cardcol{position:static}}
+.card{max-width:420px;margin-left:auto;background:var(--panel);border-radius:22px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px var(--line);transform:rotate(2deg)}
+@media (max-width:860px){.card{margin:0 auto;transform:none}}
+.card-top{background:linear-gradient(110deg,var(--navy),var(--blue) 60%,var(--red));padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rl{font-size:11px;letter-spacing:.14em;font-weight:700;color:rgba(255,255,255,.85)}
+.rating{font-family:var(--display);font-size:84px;line-height:.95;font-variant-numeric:tabular-nums}
+.who{text-align:right}
+.who .logo{font-size:30px}
+.who .nm{font-family:var(--display);font-size:32px;text-transform:uppercase;line-height:1;margin-top:10px}
+.who .meta{font-size:13px;color:rgba(255,255,255,.85);margin-top:4px}
+.stats{list-style:none;margin:0;padding:6px 24px 8px}
+.stats li{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.stats li:last-child{border-bottom:0}
+.stats b{font-family:var(--display);font-weight:400;font-size:24px;font-variant-numeric:tabular-nums}
+.card-foot{display:flex;justify-content:space-between;padding:12px 24px 18px;font-size:12px;color:var(--muted)}
+.card-foot em{font-style:normal;font-weight:700;color:var(--ink)}
+.cap{text-align:center;font-size:13px;color:var(--muted);margin-top:16px}
+
+/* how it works */
+section.how{border-top:1px solid var(--line);background:rgba(4,16,63,.6)}
+section.how .wrap{padding-block:56px}
+h2.sec{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(32px,4.4vw,48px);line-height:1;margin:0 0 28px;text-wrap:balance}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s;list-style:none;margin:0;padding:0}
+@media (max-width:760px){.steps{grid-template-columns:minmax(0,1fr)}}
+.steps li{counter-increment:s;padding-top:18px;border-top:3px solid var(--red)}
+.steps li::before{content:"Step " counter(s);display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red-hi);margin-bottom:6px}
+.steps h3{font-family:var(--display);font-weight:400;font-size:26px;text-transform:uppercase;margin:0 0 6px;line-height:1.05}
+.steps p{margin:0;color:var(--muted)}
+
+/* for everyone */
+.everyone .wrap{padding-block:56px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+@media (max-width:760px){.everyone .wrap{grid-template-columns:minmax(0,1fr)}}
+.big{font-family:var(--display);text-transform:uppercase;font-size:clamp(38px,6vw,66px);line-height:.98;margin:0;text-wrap:balance}
+.big span{color:var(--red)}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:600;font-size:15px;background:rgba(10,29,99,.6)}
+.everyone p{color:var(--muted);margin:16px 0 0}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:#030C33}
+footer .wrap{padding-block:36px 44px;display:grid;gap:22px}
+.priv{font-size:14px;color:var(--muted);max-width:70ch}
+.priv h3{font-size:15px;color:var(--ink);margin:0 0 6px}
+.priv p{margin:0 0 8px}
+.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.social{display:flex;flex-wrap:wrap;gap:14px;font-weight:600;font-size:14px}
+.social a{text-decoration:none;color:var(--muted)}
+.social a:hover{color:var(--ink)}
+.legal{font-size:12px;color:#8590C2;line-height:1.6}
+.preview-note{font-size:12px;color:#FFD27A;border:1px dashed rgba(255,210,122,.5);border-radius:8px;padding:8px 10px}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%2304103F%22/%3E%3Crect x=%2222%22 y=%2216%22 width=%2236%22 height=%2232%22 rx=%224%22 fill=%22%23E3102B%22/%3E%3Ctext x=%2240%22 y=%2242%22 font-family=%22Impact,sans-serif%22 font-size=%2222%22 fill=%22white%22 text-anchor=%22middle%22%3ExG%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="MyxG home">My<b>xG</b></a>
+    <span class="chip"><i></i>Launching soon</span>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Grassroots football stats</p>
+        <h1>Your match.<br><span>The pro treatment.</span></h1>
+        <p class="lede">Upload your match video, tap your player, and get <strong>your own stats, xG and a player card</strong> made for sharing. For every grassroots player: boys, girls, men and women.</p>
+
+        <form id="wl" novalidate>
+          <div id="fields" style="display:grid;gap:16px">
+            <div class="row">
+              <label class="f" for="email">Email
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              </label>
+              <label class="f" for="first_name">First name <small>(optional)</small>
+                <input id="first_name" name="first_name" type="text" autocomplete="given-name" maxlength="40" placeholder="Sam">
+              </label>
+            </div>
+
+            <label class="f" for="role">Who's playing?
+              <select id="role" name="role">
+                <option value="player">Me, I'm the player</option>
+                <option value="parent">My child (I'm a parent or carer)</option>
+                <option value="coach">My team (I'm a coach or manager)</option>
+              </select>
+            </label>
+
+            <fieldset>
+              <legend>What do you play? <small style="font-weight:500;color:var(--muted)">(pick any)</small></legend>
+              <div class="pills">
+                <label class="pill"><input type="checkbox" name="formats" value="youth_boys" id="f_yb"><span>Youth boys</span></label>
+                <label class="pill"><input type="checkbox" name="formats" value="youth_girls" id="f_yg"><span>Youth girls</span></label>
+                <label class="pill"><input type="checkbox" name="formats" value="mens_11" id="f_m11"><span>Men's Sunday league</span></label>
+                <label class="pill"><input type="checkbox" name="formats" value="womens_11" id="f_w11"><span>Women's 11-a-side</span></label>
+                <label class="pill"><input type="checkbox" name="formats" value="small_sided" id="f_ss"><span>5, 6 or 7-a-side</span></label>
+              </div>
+            </fieldset>
+
+            <label class="check" for="consent">
+              <input id="consent" name="consent" type="checkbox" required>
+              <span><strong>Email me when MyxG launches</strong> and about early access to the founding beta. You can unsubscribe at any time.</span>
+            </label>
+
+            <label class="check" for="scout_interest">
+              <input id="scout_interest" name="scout_interest" type="checkbox">
+              <span>I'm interested in <strong>MyxG Scout</strong>, an opt-in feature coming later that lets clubs and academies see a player's stats. Nothing is shared now.</span>
+            </label>
+
+            <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+            <div id="err" class="msg err" role="alert" hidden></div>
+            <button id="submit" type="submit">Join the waitlist</button>
+            <p class="fine">Under 16? Ask a parent or carer to sign up for you.</p>
+            <p id="previewNote" class="preview-note" hidden>Preview mode: sign-ups aren't saved yet. They go live once the page is connected to the MyxG database.</p>
+          </div>
+
+          <div id="done" class="done" hidden>
+            <h2>You're <span>on the list.</span></h2>
+            <p id="doneText">We'll email you when the founding beta opens. In the meantime, follow @GetMyxG for xG explainers and grassroots stats.</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="cardcol">
+        <article class="card" aria-label="Example MyxG player card">
+          <div class="card-top">
+            <div>
+              <div class="rl">MATCH RATING</div>
+              <div class="rating">8.6</div>
+            </div>
+            <div class="who">
+              <span class="logo" aria-hidden="true">My<b>xG</b></span>
+              <div class="nm">Amara</div>
+              <div class="meta">LW · #11 · Won 3–0</div>
+            </div>
+          </div>
+          <ul class="stats">
+            <li><span>Goals</span><b>1</b></li>
+            <li><span>Assists</span><b>2</b></li>
+            <li><span>xG</span><b>0.88</b></li>
+            <li><span>Dribbles</span><b>6/8</b></li>
+            <li><span>Chances created</span><b>4</b></li>
+            <li><span>Tackles won</span><b>2</b></li>
+          </ul>
+          <div class="card-foot"><span>Example report</span><em>What's your xG?</em></div>
+        </article>
+        <p class="cap">Every report comes with a card sized for Instagram, TikTok and WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 class="sec" id="how-h">How it works</h2>
+      <ol class="steps">
+        <li><h3>Upload your match</h3><p>Filmed on a phone, a GoPro or a club camera like Veo. If you can see the pitch, it works.</p></li>
+        <li><h3>Tap your player</h3><p>Show us who you are and confirm your goals and assists, so the report is about you and gets the big moments right.</p></li>
+        <li><h3>Get your report and card</h3><p>xG, shots, chances created, dribbles, tackles and a match rating, plus a share card for your socials.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="everyone" aria-labelledby="ev-h">
+    <div class="wrap">
+      <p class="big" id="ev-h">Not everyone's POTM.<br><span>Everyone's got an xG.</span></p>
+      <div>
+        <div class="tags">
+          <span>Youth boys</span><span>Youth girls</span><span>Sunday league</span><span>Women's football</span><span>5-a-side</span><span>Parents</span><span>Coaches</span>
+        </div>
+        <p>MyxG is about your game, not just the team's result. The defender with seven tackles and no goals gets the same pro treatment as the hat-trick hero.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="priv" id="privacy">
+      <h3>Your data</h3>
+      <p>MyxG Ltd uses the details you give here only to email you about MyxG's launch and early access, because you asked us to. We don't sell or share them. We keep them until launch, or until you ask us to delete them. Unsubscribe or ask for a copy or deletion at any time by emailing hello@getmyxg.com. A full privacy policy will be published before launch.</p>
+    </div>
+    <div class="foot-row">
+      <a class="logo" href="#top" aria-label="MyxG home" style="font-size:28px">My<b>xG</b></a>
+      <nav class="social" aria-label="MyxG on social media">
+        <a href="https://www.tiktok.com/@getmyxg" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.instagram.com/getmyxg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@GetMyxG" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://x.com/GetMyxG" target="_blank" rel="noopener">X</a>
+      </nav>
+    </div>
+    <p class="legal">MyxG™ is a trade mark of MyxG Ltd (UK application pending). MyxG Ltd is registered in England &amp; Wales, company no. 17542630. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ. ICO registration ZC287273. Contact: hello@getmyxg.com</p>
+  </div>
+</footer>
+
+<script>
+// Fill these in once the Supabase project exists. Leave blank to run in preview mode.
+const SUPABASE_URL = "https://ppqbmshhtebzfrjauznm.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_fpzCRvP2FI1bh-I_EZK1BA_OrlNTL1S";
+
+(function(){
+  const form = document.getElementById('wl');
+  const err = document.getElementById('err');
+  const btn = document.getElementById('submit');
+  const live = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
+  if (!live) document.getElementById('previewNote').hidden = false;
+
+  function showErr(t){ err.textContent = t; err.hidden = false; }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    err.hidden = true;
+    const email = form.email.value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showErr("Enter a full email address, like you@example.com."); form.email.focus(); return; }
+    if (!form.consent.checked) { showErr("Tick the box to say we can email you about the launch."); form.consent.focus(); return; }
+    if (form.website.value) { finish(false); return; } // honeypot: quietly ignore bots
+
+    const formats = Array.from(form.querySelectorAll('input[name=formats]:checked')).map(i => i.value);
+    const row = {
+      email: email,
+      first_name: form.first_name.value.trim() || null,
+      role: form.role.value,
+      formats: formats,
+      consent_marketing: true,
+      scout_interest: form.scout_interest.checked,
+      source: (new URLSearchParams(location.search).get('ref') || document.referrer || 'direct').slice(0,120)
+    };
+
+    btn.disabled = true; btn.textContent = "Joining…";
+    if (!live) { setTimeout(() => finish(false), 500); return; }
+    try {
+      const res = await fetch(SUPABASE_URL + "/rest/v1/waitlist", {
+        method: "POST",
+        headers: { "apikey": SUPABASE_ANON_KEY, "Content-Type": "application/json", "Prefer": "return=minimal" },
+        body: JSON.stringify(row)
+      });
+      if (res.ok) finish(false);
+      else if (res.status === 409) finish(true);
+      else throw new Error(res.status);
+    } catch (x) {
+      btn.disabled = false; btn.textContent = "Join the waitlist";
+      showErr("That didn't go through. Check your connection and try again, or email hello@getmyxg.com.");
+    }
+  });
+
+  function finish(already){
+    document.getElementById('fields').hidden = true;
+    const d = document.getElementById('done');
+    if (already) d.querySelector('#doneText').textContent = "That email is already on the list, so you're all set. We'll be in touch when the founding beta opens.";
+    d.hidden = false;
+  }
+})();
+</script>
+
+</body>
+</html>
